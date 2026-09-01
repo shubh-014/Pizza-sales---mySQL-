@@ -207,22 +207,71 @@ RANK() OVER (...)
 and cumulative revenue calculations.
 
 ---
-
 # 📁 Dataset
 
-The project uses a relational pizza sales dataset containing information about:
+The project uses **four relational CSV datasets** that are imported into MySQL and connected using primary and foreign keys.
 
-- Orders
-- Order details
-- Pizza products
-- Pizza types
-- Pizza categories
-- Pizza prices
-- Pizza sizes
+### 1. `orders.csv`
 
-The dataset is stored inside the `data/` directory.
+Contains information about individual customer orders.
 
----
+Key fields include:
+
+- `order_id`
+- `order_date`
+- `order_time`
+
+### 2. `order_details.csv`
+
+Contains the pizza items included in each order.
+
+Key fields include:
+
+- `order_details_id`
+- `order_id`
+- `pizza_id`
+- `quantity`
+
+### 3. `pizzas.csv`
+
+Contains information about individual pizza products.
+
+Key fields include:
+
+- `pizza_id`
+- `pizza_type_id`
+- `size`
+- `price`
+
+### 4. `pizza_types.csv`
+
+Contains information about pizza names and categories.
+
+Key fields include:
+
+- `pizza_type_id`
+- `name`
+- `category`
+- `ingredients`
+
+### 🔗 Dataset Relationships
+
+The four tables are connected through their IDs:
+
+```text
+orders
+   │
+   │ order_id
+   ▼
+order_details
+   │
+   │ pizza_id
+   ▼
+pizzas
+   │
+   │ pizza_type_id
+   ▼
+pizza_types
 
 # 🚀 How to Run the Project
 
